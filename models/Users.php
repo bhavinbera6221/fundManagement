@@ -51,7 +51,7 @@ class Users extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'User ID',
             'user_name' => 'User Name',
             'first_name' => 'First Name',
             'last_name' => 'Last Name',

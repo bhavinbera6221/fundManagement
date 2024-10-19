@@ -118,3 +118,32 @@ body {
 .btn-primary:hover {
     background-color: #0056b3;
 }
+/* Custom compact form classes */
+.compact-form-group {
+    margin-bottom: 5px !important; /* Force smaller margin between form groups */
+}
+
+.compact-form-control {
+    padding: 20px 10px !important; /* Force reduced padding inside input fields */
+    font-size: 14px; /* Ensure font-size remains readable */
+}
+
+.compact-form-label {
+    margin-bottom: 2px !important; /* Minimize space between label and input */
+}
+
+.compact-row {
+    margin-left: -5px !important; /* Reduce space between row columns */
+    margin-right: -5px !important;
+}
+
+.col-md-4 {
+    padding-left: 5px !important; /* Reduce internal column padding */
+    padding-right: 5px !important;
+}
+
+.form-control {
+    height: 30px !important; /* Adjust input height for compact look */
+}
+
+

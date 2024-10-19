@@ -84,9 +84,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect(['site/login']);
-        }
+        // if (Yii::$app->user->isGuest) {
+        //     return $this->redirect(['site/login']);
+        // }
         return $this->render('index');
     }
 
@@ -104,15 +104,18 @@ class SiteController extends Controller
 
         $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $user = User::findByUsername($model->user_name);
 
-            if ($user && $user->validatePassword($model->password)) {
-                Yii::$app->user->login($user);
-                return $this->render('index');
-            } else {
-                $model->addError('password', 'Incorrect username or password.');
-            }
+if (!empty(Yii::$app->request->post())) {
+
+    $model->user_name = Yii::$app->request->post('user_name');
+    $model->password = Yii::$app->request->post('password');
+    $user = User::findByUsername($model->user_name);
+    if ($user && $user->validatePassword($model->password)) {
+        Yii::$app->user->login($user);
+        return $this->redirect('index');
+    } else {
+        Yii::$app->session->setFlash('success', 'Data saved successfully!');
+    }
         }
 
         // Use the 'login' layout for the login page
