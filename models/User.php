@@ -37,6 +37,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function generateAccessToken()
     {
         $this->accessToken = \Yii::$app->security->generateRandomString();
+        $expiresAt = time() + (60 * 60); // 1 hour expiration time
+        $this->access_token_expires_at = $expiresAt;
         $this->save(false); // Save the token to the database
     }
 

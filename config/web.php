@@ -28,10 +28,17 @@ $config = [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
-            'class' => \yii\symfonymailer\Mailer::class,
+            'class' => 'yii\mail\Mailer',
             'viewPath' => '@app/mail',
-            // send all mails to a file by default.
-            'useFileTransport' => true,
+            'useFileTransport' => true,// Set to false to send real emails
+            // 'transport' => [
+            //     'class' => 'Swift_SmtpTransport',
+            //     'host' => 'smtp.example.com', // Your SMTP server
+            //     'username' => 'your-email@example.com',
+            //     'password' => 'your-password',
+            //     'port' => '587', // Adjust based on your SMTP server
+            //     'encryption' => 'tls',
+            // ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -58,9 +65,11 @@ $config = [
             'rules' => [
                 // '' => 'site/login',
 
-                'POST api/login' => 'api/login',  // API endpoint for login
-                'GET api/user/<id:\d+>' => 'api/view',  // View a specific user by ID
-                'PUT api/user/<id:\d+>' => 'api/update', // Update user details
+                'POST api/login' => 'api/login',
+                'POST api/logout' => 'api/logout',  // API endpoint for login
+                'GET api/users' => 'api/get-users',  // View a specific user by ID
+                'POST api/resetPassword' => 'api/change-password', // Update user details
+                'POST api/forgotPassword' => 'api/forgot-password', // Update user details
                 'DELETE api/user/<id:\d+>' => 'api/delete',
             ],
         ],
