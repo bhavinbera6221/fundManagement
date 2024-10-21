@@ -50,11 +50,11 @@ $config = [
             ],
         ],
         'db' => $db,
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true, // Ensure auto-login is enabled
-            'loginUrl' => ['site/login'],
-        ],
+        // 'user' => [
+        //     'identityClass' => 'app\models\User',
+        //     'enableAutoLogin' => true, // Ensure auto-login is enabled
+        //     'loginUrl' => ['site/login'],
+        // ],
         'session' => [
             'class' => 'yii\web\Session',
             'timeout' => 3600, // Time in seconds (1 hour)
@@ -63,16 +63,13 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                // '' => 'site/login',
-
+                'GET api/users' => 'api/get-users',
                 'POST api/login' => 'api/login',
-                'POST api/logout' => 'api/logout',  // API endpoint for login
-                'GET api/users' => 'api/get-users',  // View a specific user by ID
-                'POST api/resetPassword' => 'api/change-password', // Update user details
-                'POST api/forgotPassword' => 'api/forgot-password', // Update user details
-                'DELETE api/user/<id:\d+>' => 'api/delete',
+                'POST api/logout' => 'api/logout',
+                'POST api/resetPassword' => 'api/change-password',
+                'POST api/forgotPassword' => 'api/forgot-password',
             ],
-        ],
+    ],
 
     ],
     'params' => $params,
