@@ -22,7 +22,8 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true, // Enable this for web portal
-            'enableSession' => false,
+            'enableSession' => true,
+            'loginUrl' => ['site/login'],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -50,11 +51,6 @@ $config = [
             ],
         ],
         'db' => $db,
-        // 'user' => [
-        //     'identityClass' => 'app\models\User',
-        //     'enableAutoLogin' => true, // Ensure auto-login is enabled
-        //     'loginUrl' => ['site/login'],
-        // ],
         'session' => [
             'class' => 'yii\web\Session',
             'timeout' => 3600, // Time in seconds (1 hour)

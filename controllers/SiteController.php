@@ -21,7 +21,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout','login'],
+                'only' => ['logout'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
@@ -37,28 +37,6 @@ class SiteController extends Controller
                 ],
             ],
         ];
-        /* return [
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'actions' => ['login'], // Allow public access to login
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => ['logout', 'index', 'profile'], // Define your restricted actions
-                        'allow' => true,
-                        'roles' => ['@'], // Require authenticated users
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];*/
     }
 
     /**
@@ -105,17 +83,17 @@ class SiteController extends Controller
         $model = new User();
 
 
-if (!empty(Yii::$app->request->post())) {
+        if (!empty(Yii::$app->request->post())) {
 
-    $model->user_name = Yii::$app->request->post('user_name');
-    $model->password = Yii::$app->request->post('password');
-    $user = User::findByUsername($model->user_name);
-    if ($user && $user->validatePassword($model->password)) {
-        Yii::$app->user->login($user);
-        return $this->redirect('index');
-    } else {
-        Yii::$app->session->setFlash('success', 'Data saved successfully!');
-    }
+            $model->user_name = Yii::$app->request->post('user_name');
+            $model->password = Yii::$app->request->post('password');
+            $user = User::findByUsername($model->user_name);
+            if ($user && $user->validatePassword($model->password)) {
+                Yii::$app->user->login($user);
+                return $this->redirect('index');
+            } else {
+                Yii::$app->session->setFlash('success', 'Data saved successfully!');
+            }
         }
 
         // Use the 'login' layout for the login page
